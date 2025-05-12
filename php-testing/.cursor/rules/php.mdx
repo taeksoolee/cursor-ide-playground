@@ -1,0 +1,58 @@
+# PHP Coding Guidelines
+
+These are the PHP coding standards and practices to follow in this project.
+
+---
+
+## ✅ General Rules
+
+- Use **PSR-12** coding standards.
+- Always use **strict types**.
+- Avoid using global variables.
+- Prefer **dependency injection** over singleton or global access.
+- Functions should be **pure** whenever possible.
+
+---
+
+## 🧱 Syntax and Style
+
+- Use 4 spaces for indentation.
+- Use short array syntax (`[]` instead of `array()`).
+- Use `declare(strict_types=1);` at the top of every PHP file.
+- Do not leave unused `use` statements.
+- Avoid mixing HTML and PHP in the same file unless working in a templating context (e.g., Blade, Twig).
+
+---
+
+## 📦 OOP Principles
+
+- Always define visibility (`public`, `protected`, `private`) for properties and methods.
+- Prefer **final** classes when extension is not required.
+- Use **interfaces** to define contracts.
+- Apply **SOLID** principles when designing classes.
+
+---
+
+## 📋 Example: Good Practice
+
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace App\Service;
+
+use App\Repository\UserRepository;
+
+final class UserService
+{
+    public function __construct(
+        private UserRepository $userRepository
+    ) {}
+
+    public function getUserById(int $id): ?User
+    {
+        return $this->userRepository->find($id);
+    }
+}
+```
